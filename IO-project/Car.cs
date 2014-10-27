@@ -12,7 +12,7 @@ namespace IO
 
 		public Route Route { get; set; }
 
-        public Car(int createTime,Route route)
+        public Car(Route route)
         {
             this.Route = route;
         }
