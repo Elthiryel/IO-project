@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IO;
 
-namespace IO_project
+namespace IO
 {
     public class ProblemInstance
     {

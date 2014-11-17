@@ -44,6 +44,7 @@
     <Compile Include="Car.cs" />
     <Compile Include="CarDistance.cs" />
     <Compile Include="Crossroad.cs" />
+    <Compile Include="InputParser.cs" />
     <Compile Include="ProblemController.cs" />
     <Compile Include="ProblemInstance.cs" />
     <Compile Include="Program.cs" />
@@ -54,6 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="routes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

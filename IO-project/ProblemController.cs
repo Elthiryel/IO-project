@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using IO;
 
-namespace IO_project
+namespace IO
 {
     public class ProblemController
     {
@@ -14,7 +14,7 @@ namespace IO_project
 
         public static int CurrentMoment { get; private set; }
 
-        public List<Car> ArchivedCarData { get; private set; }
+        public List<Car> ArchivedCarData { get; private set; } 
 
         public ProblemController(ProblemInstance instance)
         {
@@ -30,7 +30,7 @@ namespace IO_project
             //Console.WriteLine("Starting Instance for "+durationInSeconds+" seconds");
             for (CurrentMoment = 0; CurrentMoment < durationInSeconds; CurrentMoment++)
             {
-                ProgressInstance();
+               ProgressInstance();
             }
         }
 
@@ -65,7 +65,7 @@ namespace IO_project
                         crossroad = nextRoad.First;
                     if (crossroad == null && (road.First.Id == nextRoad.First.Id || road.First.Id == nextRoad.Second.Id))
                         crossroad = road.First;
-                    else if (crossroad == null)
+                    else if(crossroad == null)
                         crossroad = road.Second;
                     var direction = DetermineDirection(crossroad, road);
                     var delayDirection = DetermineDirection(crossroad, nextRoad);
@@ -95,14 +95,14 @@ namespace IO_project
 
         private void SwitchLights(Crossroad crossroad)
         {
-
+           
             var lights = crossroad.Lights;
             var moment = CurrentMoment;
             while (moment > lights.CycleDuration)
             {
                 moment -= lights.CycleDuration;
             }
-
+       
             var secondDuration = lights.WestEastDuration;
             Orientation computed = crossroad.LightsState;
             switch (lights.StartingLightingState)
@@ -124,7 +124,7 @@ namespace IO_project
                 if (computed == lights.StartingLightingState)
                     crossroad.SwitchLightState();
             }
-
+            
         }
 
         public void SetTrafficLightsConfiguration(Dictionary<int, TrafficLights> configuration)
@@ -150,7 +150,7 @@ namespace IO_project
 
                 for (int i = 0; i < road.DecreasingLaneCount; i++)
                 {
-                    ProcessCars(road.DecreasingLanes[i], road.First, finishedCars, false);
+                   ProcessCars(road.DecreasingLanes[i], road.First, finishedCars, false);
                 }
             }
 
@@ -161,7 +161,7 @@ namespace IO_project
             }
         }
 
-        private void ProcessCars(LinkedList<CarDistance> lane, Crossroad crossroad, List<Car> finishedCars, bool fromIncreasingLane)
+        private void ProcessCars(LinkedList<CarDistance> lane,Crossroad crossroad, List<Car> finishedCars, bool fromIncreasingLane )
         {
             List<CarDistance> toDelete = new List<CarDistance>();
             foreach (var carDistance in lane)
@@ -203,7 +203,7 @@ namespace IO_project
             }
         }
 
-        private bool MoveDependingOnLights(Crossroad crossroad, CarDistance carDistance, int leftoverSpeed, List<Car> finishedCars, bool fromIncreasingLane)
+        private bool MoveDependingOnLights(Crossroad crossroad, CarDistance carDistance, int leftoverSpeed, List<Car> finishedCars, bool fromIncreasingLane )
         {
             //koniec mapy
             if (crossroad == null)
@@ -233,8 +233,8 @@ namespace IO_project
                 return true;
             }
 
-            Direction direction = DetermineDirection(crossroad, road);
-
+            Direction direction = DetermineDirection(crossroad,road);
+            
             //setDelay
             int delay = 0;
             if (carDistance.Car.Route.Roads.Count >= carDistance.Car.RoadProgress + 2)
@@ -253,7 +253,7 @@ namespace IO_project
                     }
                 }
             }
-
+            
             switch (direction)
             {
                 case Direction.North:
@@ -313,7 +313,7 @@ namespace IO_project
             foreach (var car in ArchivedCarData)
                 sumTime += car.TimeSinceDeparture;
             //zwraca wartosc funkcji minimalizujacej na podstawie ArchivedCarData z czasami
-            return (double)sumTime / ArchivedCarData.Count;
+            return (double) sumTime /  ArchivedCarData.Count;
         }
 
         public Dictionary<Route, double> ComputeEachRoute(out Dictionary<Route, int> carCount)
@@ -333,22 +333,11 @@ namespace IO_project
             }
             foreach (var route in countersdict.Keys)
             {
-                dict[route] = dict[route] / countersdict[route];
+                dict[route] = dict[route]/countersdict[route];
             }
-            carCount = countersdict;
+			carCount = countersdict;
             return dict;
         }
 
     }
-
-    public enum Direction
-    {
-        South,
-        East,
-        West,
-        North,
-        NotSet
-    }
 }
-
-
