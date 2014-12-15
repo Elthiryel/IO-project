@@ -15,7 +15,7 @@ namespace IO
 			InputParser.FillRoadsAndCrossroads(pi, "test.txt");
             InputParser.FillRoutes(pi, "routes.xml");
 
-            var algorithm = new RandomStartGeneticAlgorithm(pi, 5, 5, 10000);
+            var algorithm = new RandomStartAdaptiveGeneticAlgorithm(pi, 10, 10, 10000);
             algorithm.Run();
             var result = algorithm.GetResult();
             //Console.WriteLine("END, result: " + result);

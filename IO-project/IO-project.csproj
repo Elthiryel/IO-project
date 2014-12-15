@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmUtils.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarDistance.cs" />
     <Compile Include="Crossroad.cs" />
@@ -50,7 +51,9 @@
     <Compile Include="ProblemInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomStartAdaptiveGeneticAlgorithm.cs" />
     <Compile Include="RandomStartGeneticAlgorithm.cs" />
+    <Compile Include="RandomStartHierarchicGeneticAlgorithm.cs" />
     <Compile Include="Road.cs" />
     <Compile Include="Route.cs" />
     <Compile Include="TrafficLights.cs" />
